@@ -2,6 +2,9 @@ package com.blog.blog.services;
 
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
+
+import com.blog.blog.payloads.ApiResponse;
 import com.blog.blog.payloads.UserDto;
 
 public interface UserService {
