@@ -58,5 +58,11 @@ public class UserController {
 		return new ResponseEntity<ApiResponse>(new ApiResponse(200, "User Deleted Succesfully", null),HttpStatus.OK);
 	}
 	
+	@GetMapping("/{userId}")
+	public ResponseEntity<ApiResponse> getUserById(@PathVariable Integer userId){
+		UserDto getUserById = userService.getUserById(userId);
+		return new ResponseEntity<ApiResponse>(new ApiResponse(200, "User Fetched Successfully", getUserById) , HttpStatus.OK);
+	}
+	
 
 }
