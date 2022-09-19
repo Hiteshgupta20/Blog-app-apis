@@ -1,18 +1,16 @@
 package com.blog.blog.services;
 
-import java.util.List;
-
+import com.blog.blog.payloads.UserDto;
 import org.springframework.http.ResponseEntity;
 
-import com.blog.blog.payloads.ApiResponse;
-import com.blog.blog.payloads.UserDto;
+import java.util.List;
 
 public interface UserService {
 
 	
-	UserDto createUser(UserDto user);
-	UserDto updateUser(UserDto user, Integer userId);
-	UserDto getUserById(Integer userID);
-	List<UserDto> getAllUser();
-	void deleteUser(Integer userId);
+	ResponseEntity createUser(UserDto user);
+	ResponseEntity updateUser(UserDto user, Integer userId);
+	ResponseEntity getUserById(Integer userID);
+	ResponseEntity getAllUser();
+	ResponseEntity deleteUser(Integer userId);
 }

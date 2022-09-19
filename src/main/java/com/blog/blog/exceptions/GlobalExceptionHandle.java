@@ -1,8 +1,6 @@
 package com.blog.blog.exceptions;
 
-import java.util.HashMap;
-import java.util.Map;
-
+import com.blog.blog.payloads.ApiResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -10,7 +8,8 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import com.blog.blog.payloads.ApiResponse;
+import java.util.HashMap;
+import java.util.Map;
 
 @RestControllerAdvice
 public class GlobalExceptionHandle {
@@ -18,8 +17,7 @@ public class GlobalExceptionHandle {
 	@ExceptionHandler(ResourceNotFoundException.class)
 	public ResponseEntity<ApiResponse> resourceNotFoundExceptionHandler(ResourceNotFoundException ex){
 		String message= ex.getMessage();
-		ApiResponse apiResponse = new ApiResponse(400, message, null);
-		return new ResponseEntity<ApiResponse>(apiResponse,HttpStatus.OK);
+		return ApiResponse.failure(400,message,null);
 	}
 	
 	@ExceptionHandler(MethodArgumentNotValidException.class)
@@ -31,8 +29,7 @@ public class GlobalExceptionHandle {
 			String message= error.getDefaultMessage();
 			resp.put(fieldName, message);
  		});
-		ApiResponse apiResponse = new ApiResponse(400, "Failed", resp);
-		return new ResponseEntity<ApiResponse>(apiResponse,HttpStatus.OK);
+		return ApiResponse.failure(400,"Failed",resp);
 	}
 
 }
